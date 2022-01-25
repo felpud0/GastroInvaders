@@ -1,0 +1,607 @@
+
+#include <stdlib.h>
+#include <stdio.h>
+#include "Pantalla.h"
+#include "personaje.h"
+#include "Enemigo.h"
+#include "Colision.h"
+#include "Galaxia.h"
+#include "Astro.h"
+#include "Flota.h"
+#include "Rafaga.h"
+#include <time.h>
+#include "Escudo.h"
+#include "Explosion.h"
+
+//Definimos el tamaño de la ventana
+#define WPANTALLA 1280
+#define HPANTALLA  720
+
+//Atributos personaje.
+#define VXPERSONAJE 8
+#define VYPERSONAJE 8
+#define WPERSONAJE 60
+#define HPERSONAJE 60
+#define VIDAS 5
+#define WCORAZON 20
+#define HCORAZON 25
+
+//Atributos enemigo.
+#define VXENEMIGO 5
+#define VYENEMIGO 2
+#define WENEMIGO 50
+#define HENEMIGO 40
+
+//Atributos para la galaxia.
+#define MAXASTROS 5
+#define TIPOSASTROS 4
+#define FRECASTROS 500
+#define PUNTOSEXTRA 5
+
+//Atributos para flota.
+#define FRECENEMIGOS 150
+
+#define WRAYO 10
+#define HRAYO 40
+
+
+int main(int argc, char *argv[])
+
+{
+
+    Pantalla_Crea("Spanish Invaders", WPANTALLA,HPANTALLA);
+
+    Imagen fondoB = Pantalla_ImagenLee("portada.bmp",0);
+    Imagen fondoJ = Pantalla_ImagenLee("fondoJ1edit.bmp",0);
+    Imagen chicoteB = Pantalla_ImagenLee("chicote2.bmp",1);
+
+    Imagen naveEnemiga = Pantalla_ImagenLee("meatball.bmp",1);
+    Imagen navePersonaje = Pantalla_ImagenLee("chicote.bmp",1);
+    Imagen iEscudo= Pantalla_ImagenLee("escudo.bmp",1);
+    Imagen eImagen = Pantalla_ImagenLee("meatball.bmp",1);
+    Imagen eImagen2 = Pantalla_ImagenLee("meatball2.bmp",1);
+    Imagen bImagen = Pantalla_ImagenLee("falcon.bmp",1);
+    Imagen explosion = Pantalla_ImagenLee("explosion.bmp",1);
+    Imagen corazon = Pantalla_ImagenLee("corazon.bmp",1);
+    Imagen iRayo = Pantalla_ImagenLee("rayo.bmp",0);
+
+
+
+    srand(time(NULL));
+
+    int ajusteTextoRecord = 0;
+
+    int fin = 0;
+    int menuB=1;
+    int seleccion=0;
+
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //#########################################          FASE DE BIENVENIDA        #####################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+
+    while ((Pantalla_Activa()) && !(fin))
+
+    {
+        //Condicion de terminacion.
+        if (Pantalla_TeclaPulsada(SDL_SCANCODE_RETURN))fin = 1;
+
+        //Seleccion de nivel.
+        if (Pantalla_TeclaPulsada(SDL_SCANCODE_DOWN)&&(!(seleccion))){ menuB++; seleccion =1;}
+        if (Pantalla_TeclaPulsada(SDL_SCANCODE_UP)&&(!(seleccion))) {menuB--; seleccion =1;}
+
+        if (!(Pantalla_TeclaPulsada(SDL_SCANCODE_UP)||Pantalla_TeclaPulsada(SDL_SCANCODE_DOWN))) seleccion=0;
+
+        if (menuB>3) menuB=1;
+        if (menuB<1) menuB=3;
+
+        //Dibujar fondo.
+        Pantalla_DibujaImagen(fondoB,0,0,WPANTALLA,HPANTALLA);
+
+        //Dibuja chicote.
+        Pantalla_DibujaImagen(naveEnemiga,WPANTALLA/2,HPANTALLA/2 - 170,300,300);
+        Pantalla_DibujaImagen(chicoteB,WPANTALLA/2 + 150,HPANTALLA/2 - 100,300,300);
+
+        //Rectangulo para texto.
+        Pantalla_ColorTrazo(255,0,0,255);
+        Pantalla_ColorRelleno(50,50,50,255);
+        Pantalla_DibujaRectangulo((WPANTALLA-270)/2 - 300,(HPANTALLA)/2 -45 ,270,150);
+
+        //Texto.
+        Pantalla_ColorTrazo(rand()%255,rand()%255,rand()%255,255);
+        Pantalla_DibujaTexto("Seleccione dificultad:", 240   , HPANTALLA/2 - 35 );
+        Pantalla_DibujaTexto("Pulsa [ENTER] jugar", 240 , HPANTALLA/2 +83);
+
+        //Seleccion de dificultad.
+        switch (menuB)
+        {
+            case 1: {Pantalla_ColorTrazo(255,0,0,255);Pantalla_DibujaTexto("Baja",250,HPANTALLA/2-2 );Pantalla_ColorTrazo(0,0,0,255); Pantalla_DibujaTexto("Media",250,HPANTALLA/2+30-2);Pantalla_ColorTrazo(0,0,0,255);Pantalla_DibujaTexto("Alta",250,HPANTALLA/2+60-2 );break;}
+            case 2: {Pantalla_ColorTrazo(0,0,0,255);Pantalla_DibujaTexto("Baja",250,HPANTALLA/2-2 );Pantalla_ColorTrazo(255,0,0,255); Pantalla_DibujaTexto("Media",250,HPANTALLA/2+30-2);Pantalla_ColorTrazo(0,0,0,255);Pantalla_DibujaTexto("Alta",250,HPANTALLA/2+60-2 );break;}
+            case 3: {Pantalla_ColorTrazo(0,0,0,255);Pantalla_DibujaTexto("Baja",250,HPANTALLA/2-2);Pantalla_ColorTrazo(0,0,0,255); Pantalla_DibujaTexto("Media",250,HPANTALLA/2+30-2);Pantalla_ColorTrazo(255,0,0,255);Pantalla_DibujaTexto("Alta",250,HPANTALLA/2+60-2 );break;}
+        }
+
+        Pantalla_Actualiza();
+        Pantalla_Espera(50);
+
+    };
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+
+
+    fin = 0;
+
+    typedef struct{
+        Imagen img;
+        int w;
+        int h;
+    } imagen_astro;
+
+    imagen_astro img_astros[TIPOSASTROS];
+    img_astros[0].img = Pantalla_ImagenLee("churrasco.bmp",1);
+    img_astros[0].w = 30;
+    img_astros[0].h = 30;
+    img_astros[1].img = Pantalla_ImagenLee("tortitas.bmp",1);
+    img_astros[1].w = 30;
+    img_astros[1].h = 30;
+    img_astros[2].img = Pantalla_ImagenLee("platano.bmp",1);
+    img_astros[2].w = 30;
+    img_astros[2].h = 30;
+    img_astros[3].img = Pantalla_ImagenLee("manzana.bmp",1);
+    img_astros[3].w = 30;
+    img_astros[3].h = 35;
+
+    //Variable para vxEnemigo.
+    int vxE = VXENEMIGO;
+    if (rand()%2 ==0) vxE*=-1;
+
+    //Creacion de personaje,enemigo y galaxia.
+    Personaje p = PersonajeCrea(navePersonaje,rand()%(WPANTALLA - WPERSONAJE),HPANTALLA- HPERSONAJE,WPERSONAJE,HPERSONAJE);
+    Escudo esc = EscudoCrea(iEscudo);
+    Galaxia galaxia = GalaxiaCrea(MAXASTROS);
+    Flota f1 = FlotaCrea();
+    Rafaga r = RafagaCrea();
+    int disparoRafaga=0;
+    Efectos ef = EfectosCrea();
+
+
+
+    //Variables para el calculo de puntuacion
+    int t1 = time(NULL);
+    int t2;
+    int puntos;
+    char puntuacion[100];
+
+    //Preparacion de fichero para records.
+    int puntuacionMax = 0;
+    int datoFichero;    //Variable para recoger el dato de fscan
+    char textoRecord[100];
+
+    //Abriendo el fichero como lectura y leyendo puntuaciones.
+    FILE *f;
+    f=  fopen("records.txt","r");
+
+    if (f!=NULL)
+    {
+        while (!feof(f))
+        {
+            //Recorre el fichero y obtiene la puntuacion mas alta.
+            fscanf(f,"%d",&datoFichero);
+            if (datoFichero>puntuacionMax)
+                puntuacionMax = datoFichero; //La mas alta, la almacena en puntuacionMax.
+        }
+        fclose(f);
+    };
+
+
+    //Variable y texto de vidas.
+    char textoVidas[100];
+    int vidas = VIDAS;
+    sprintf(textoVidas,"VIDAS: %d",vidas);
+
+    //Variables debug.
+    char textoDificultad[100];
+    char selDificultad[100];
+    sprintf(selDificultad,"Modo %d",menuB);
+
+    //Variables dificultad y stages.
+    int puntosExtra=0;
+    int dificultadMin = FRECENEMIGOS;
+    int dificultad;
+    int stage=1;
+    char textoStage[100];
+    sprintf(textoStage,"STAGE: %d",stage);
+
+    //Variables escudo.
+    int muestraEscudo = 0;
+    char textoEscudo[100]="ESCUDO: ";
+
+    //Variables menu.
+    int menuJ=0;
+    seleccion=0;
+    int tMenu;
+    char textotMenu[100];
+
+    //Rellenando nuestro cuadro de vidas.
+    Imagen corazones[vidas];
+    for (int i=0;i<=vidas-1;i++) corazones[i]=corazon;
+
+    //Variables para el rayo.
+    int enemigosMatados=0;
+    int enemigosMatadosGoal=20;
+    int tRayo=0;
+    char textoRayo[100]="RAYO: ";
+
+
+
+
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //#########################################          FASE DE JUEGO        ##########################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+
+    while (((Pantalla_Activa()))&& (!(fin)))
+
+    {
+        //Te quedas sin vidas, se sale del bucle.
+        if (vidas <= 0)   fin = 1;
+
+        //Cuando presionas escape, vas al menu.
+        if (Pantalla_TeclaPulsada(SDL_SCANCODE_ESCAPE)) {menuJ=1; tMenu=time(NULL);};
+        if (menuJ>0)
+        {
+            //Condicion de terminacion del MENU.
+            if (Pantalla_TeclaPulsada(SDL_SCANCODE_RETURN))
+            {
+                switch (menuJ)
+                {
+                    case 2: {fin=1;menuJ=0;break;};
+                    case 1: {menuJ=0;t1=t1+(time(NULL)-tMenu);break;};
+                };
+
+            }
+            else
+            {
+
+                //Seleccion de opcion.
+                if (Pantalla_TeclaPulsada(SDL_SCANCODE_DOWN)&&(!(seleccion))){ menuJ++; seleccion =1;}
+                if (Pantalla_TeclaPulsada(SDL_SCANCODE_UP)&&(!(seleccion))) {menuJ--; seleccion =1;}
+
+                if (!(Pantalla_TeclaPulsada(SDL_SCANCODE_UP)||Pantalla_TeclaPulsada(SDL_SCANCODE_DOWN))) seleccion=0;
+
+                if (menuJ>2) menuJ=1;
+                if (menuJ<1) menuJ=2;
+
+                //Para mostrar, el tiempo en menu(DEBUG).
+                sprintf(textotMenu,"TMenu: %d",time(NULL)-tMenu);
+
+                //Fondo.
+                Pantalla_DibujaImagen(fondoJ,0,0,WPANTALLA,HPANTALLA);
+
+                //Personajes.
+                GalaxiaDibuja(galaxia);
+                PersonajeDibuja(p);
+                if (muestraEscudo){muestraEscudo=0; EscudoDibuja(esc);};
+                FlotaDibuja(f1);
+                RafagaDibuja(r);
+
+                //HUD.
+                //parte derecha
+                Pantalla_ColorTrazo(255,68,0,255);
+                Pantalla_DibujaTexto(textoVidas,WPANTALLA-100,35);
+                Pantalla_DibujaTexto(textoRecord,WPANTALLA-110-ajusteTextoRecord,20);
+                Pantalla_DibujaTexto(puntuacion,WPANTALLA-145,5);
+                Pantalla_DibujaTexto(textoStage,WPANTALLA-100,50);
+                //parte izquierda
+                Pantalla_DibujaTexto("Pulsa [ESC] para salir", 5 , 5);
+                Pantalla_DibujaTexto("ESCUDO:",5,30);
+                Pantalla_DibujaRectangulo(5,45,EscudoGetEstado(esc)/10,5);
+
+                //Debug.
+                Pantalla_DibujaTexto(textoDificultad,WPANTALLA/2,5);
+                Pantalla_DibujaTexto(selDificultad,WPANTALLA/2,20);
+                Pantalla_DibujaTexto(textotMenu,WPANTALLA/2,35);
+
+                //Menu.
+                Pantalla_DibujaRectangulo(WPANTALLA/2-70,HPANTALLA/2-30,120,80);
+
+                switch (menuJ)
+                {
+                case 1:
+                {
+                    Pantalla_ColorTrazo(255,0,0,255);
+                    Pantalla_DibujaTexto("Continuar",WPANTALLA/2-50,HPANTALLA/2-15);
+                    Pantalla_ColorTrazo(255,255,255,255);
+                    Pantalla_DibujaTexto("Salir",WPANTALLA/2-50,HPANTALLA/2+15);
+                    break;
+                };
+                case 2:
+                {
+                    Pantalla_ColorTrazo(255,255,255,255);
+                    Pantalla_DibujaTexto("Continuar",WPANTALLA/2-50,HPANTALLA/2-15);
+                    Pantalla_ColorTrazo(255,0,0,255);
+                    Pantalla_DibujaTexto("Salir",WPANTALLA/2-50,HPANTALLA/2+15);
+                    break;
+                };
+
+                };
+
+
+                Pantalla_Actualiza();
+                Pantalla_Espera(40);
+            }
+        }
+
+
+        //Si no, sigues jugando...
+        else
+        {
+            //Deteccion de control del personaje
+            if (Pantalla_TeclaPulsada(SDL_SCANCODE_LEFT)){ PersonajeMueve(p,-VXPERSONAJE,0);};
+            if (Pantalla_TeclaPulsada(SDL_SCANCODE_RIGHT)){PersonajeMueve(p,VXPERSONAJE,0);};
+            if (Pantalla_TeclaPulsada(SDL_SCANCODE_UP)){PersonajeMueve(p,0,-VYPERSONAJE);};
+            if (Pantalla_TeclaPulsada(SDL_SCANCODE_DOWN)){PersonajeMueve(p,0,VYPERSONAJE);};
+
+            //Calculo de puntuacion.
+            t2= time(NULL);
+            puntos = t2-t1+puntosExtra;
+            sprintf(puntuacion,"PUNTUACION: %d",puntos);
+
+            //Aumentando la dificultad.
+            if ((puntos>=50)&&(!(stage>=2))) {dificultadMin *= 0.75; stage = 2; sprintf(textoStage,"STAGE: %d",stage); EscudoCargar(esc,p,1000); sprintf(textoEscudo,"ESCUDO: Disponible[M]");};
+            if ((puntos>=100)&&(!(stage>=3))) {dificultadMin *= 1.2; stage = 3; sprintf(textoStage,"STAGE: %d",stage); EscudoCargar(esc,p,1000); sprintf(textoEscudo,"ESCUDO: Disponible[M]");};
+
+
+            //Condiciones escudo.
+            if (Pantalla_TeclaPulsada(SDL_SCANCODE_M))
+            {
+                if (EscudoGastar(esc,p,2)) muestraEscudo=1;
+            }
+
+
+            //Que mensaje de record mostrar.
+            if (puntuacionMax>puntos)
+                sprintf(textoRecord,"RECORD: %d",puntuacionMax);
+            else
+            {
+                ajusteTextoRecord =40;
+                sprintf(textoRecord,"NUEVO RECORD!!");
+            };
+
+
+            //Generacion aleatoria de astros(galaxia) en pantalla.
+            if (!(rand()%FRECASTROS))
+            {
+                int tipo=rand()%(TIPOSASTROS);
+                GalaxiaInsertaNuevoAstro(galaxia,
+                                        AstroCrea(img_astros[tipo].img,
+                                        rand()%(WPANTALLA-img_astros[tipo].w),
+                                        rand()%(HPANTALLA-img_astros[tipo].h),
+                                        img_astros[tipo].w,
+                                        img_astros[tipo].h));
+            };
+
+            //Colision de astros y personaje.
+            if ((GalaxiaColision(galaxia,PersonajeGetX(p),PersonajeGetY(p),PersonajeGetW(p),PersonajeGetH(p)))&&(!(EscudoGetEstado(esc))))
+            {
+                puntosExtra+=PUNTOSEXTRA;
+            };
+
+            //Generacion de balas(rafaga) en papntalla.
+            if ((Pantalla_TeclaPulsada(SDL_SCANCODE_D))&&(!(disparoRafaga)))
+            {
+                if (rand()%2)
+                {
+                    if (tRayo)
+                    {
+                        RafagaInsertaNuevaBala(r,
+                        BalaCrea(iRayo,PersonajeGetX(p),PersonajeGetY(p),WRAYO,HRAYO,5,-20));
+                        disparoRafaga=1;
+                        if (tRayo>0) tRayo--;
+                    }
+                    else
+                    {
+                        RafagaInsertaNuevaBala(r,
+                        BalaCrea(bImagen,PersonajeGetX(p),PersonajeGetY(p),20,20,0,-20));
+                        disparoRafaga=1;
+//                        if (tRayo>0) tRayo--;
+                    }
+
+                }
+                else
+                {
+                    if (tRayo)
+                    {
+                        RafagaInsertaNuevaBala(r,
+                        BalaCrea(iRayo,PersonajeGetX(p)+15,PersonajeGetY(p),WRAYO,HRAYO,-5,-20));
+                        disparoRafaga=1;
+                        if (tRayo>0) tRayo--;
+                    }
+                    else
+                    {
+                        RafagaInsertaNuevaBala(r,
+                        BalaCrea(bImagen,PersonajeGetX(p)+15,PersonajeGetY(p),20,20,0,-20));
+                        disparoRafaga=1;
+//                        if (tRayo>0) tRayo--;
+                    }
+                }
+
+            }
+            //Si no se esta pulsando la tecla, se podra volver a disparar.
+            if (!(Pantalla_TeclaPulsada(SDL_SCANCODE_D))) disparoRafaga=0;
+
+            //Movimiento refaga.
+            RafagaMueve(r);
+
+            //Dificultad en aumento de manera sencilla.
+            dificultad=dificultadMin-puntos;
+            if (dificultad <= 7) dificultad = 10;
+
+            //Generacion aleatoria de enemigos(flota) en pantalla.
+            switch (stage)
+            {
+                case 1:
+                    {
+                        if (!(rand()%dificultad))
+                        {
+                            if (rand()%2 ==0) vxE*=-1;
+                            FlotaInsertaNuevoEnemigo(f1,
+                            EnemigoCrea(eImagen,rand()%(WPANTALLA - WENEMIGO),5,WENEMIGO,HENEMIGO,vxE,VYENEMIGO,stage));
+                        };
+                        break;
+                    };
+
+                case 2:
+                    {
+                        if (!(rand()%dificultad))
+                        {
+                            if (rand()%2 ==0) vxE*=-1;
+                            FlotaInsertaNuevoEnemigo(f1,
+                            EnemigoCrea(eImagen2,rand()%(WPANTALLA - WENEMIGO),5,WENEMIGO,HENEMIGO,vxE,VYENEMIGO,stage));
+                        };
+                        break;
+                    };
+            }
+
+
+            sprintf(textoDificultad,"Dificultad %d",dificultad);
+
+            //Movimiento de la flota
+            FlotaMueve(f1,p);
+
+            //Colision de flota y personaje.
+            if ((FlotaColision(f1,PersonajeGetX(p),PersonajeGetY(p),PersonajeGetW(p),PersonajeGetH(p)))&&(!(muestraEscudo)))
+            {
+                vidas--;
+                sprintf(textoVidas,"VIDAS: %d",vidas);
+
+            }
+
+
+            //Nos detecta las colisiones entre flota y rafaga.
+            if (RafagaColision(r,f1,ef,explosion)) enemigosMatados++;
+            EfectosActivos(ef,60);
+
+            if (((enemigosMatados%enemigosMatadosGoal)==0)&&(enemigosMatados!=0)) {tRayo=300;sprintf(textoRayo,"RAYO: Disponible[D]");};
+
+            if (tRayo>0) disparoRafaga=0;
+
+            printf("EnemigosM: %d\n",enemigosMatados);
+            printf("EnemigosM/Goal: %d\n",enemigosMatados%enemigosMatadosGoal);
+            printf("tRayo: %d\n",tRayo);
+
+            //Fondo.
+            Pantalla_DibujaImagen(fondoJ,0,0,WPANTALLA,HPANTALLA);
+
+            //Personajes.
+            GalaxiaDibuja(galaxia);
+            PersonajeDibuja(p);
+            if (muestraEscudo){muestraEscudo=0; EscudoDibuja(esc);sprintf(textoEscudo,"ESCUDO: ");};
+            FlotaDibuja(f1);
+            RafagaDibuja(r);
+            EfectosDibuja(ef);
+
+            //HUD.
+            //parte derecha
+            Pantalla_ColorTrazo(255,0,0,255);
+            Pantalla_DibujaTexto(puntuacion,WPANTALLA-145,5);
+            Pantalla_DibujaTexto(textoRecord,WPANTALLA-110-ajusteTextoRecord,20);
+            Pantalla_DibujaTexto(textoVidas,WPANTALLA-100,35);
+            Pantalla_DibujaTexto(textoStage,WPANTALLA-100,50);
+            for (int i=vidas-1;i>=0;i--)Pantalla_DibujaImagen(corazones[i],WPANTALLA-20-(VIDAS*WCORAZON)+i*WCORAZON,65,WCORAZON,HCORAZON);
+            //parte izquierda
+            Pantalla_DibujaTexto("Pulsa [ESC] para salir", 5 , 5);
+            Pantalla_DibujaTexto(textoEscudo,5,30);
+            Pantalla_DibujaRectangulo(5,45,EscudoGetEstado(esc)/10,5);
+            Pantalla_DibujaTexto(textoRayo,5,60);
+            if (tRayo) Pantalla_DibujaRectangulo(5,75,tRayo/5,5);
+            else Pantalla_DibujaRectangulo(5,75,enemigosMatados%enemigosMatadosGoal*5,5);
+
+
+            //Debug.
+            Pantalla_DibujaTexto(textoDificultad,WPANTALLA/2,5);
+            Pantalla_DibujaTexto(selDificultad,WPANTALLA/2,20);
+
+
+
+            Pantalla_Actualiza();
+            Pantalla_Espera(15);
+
+        };
+    }
+
+
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    fin = 0;
+
+    PersonajeLibera(p);
+    GalaxiaLibera(galaxia);
+    FlotaLibera(f1);
+
+    Pantalla_ImagenLibera(eImagen);
+
+
+    //Solo se registra los puntos en el fichero si has hecho un record.
+    if (puntos>puntuacionMax)
+    {
+        f = fopen("records.txt","a");
+        fprintf(f,"%d\n",puntos);
+        fclose(f);
+    }
+
+
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //#########################################          FASE DE DESPEDIDA        ######################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+
+    while (((Pantalla_Activa()))&& (!(fin)))
+    {
+        if (Pantalla_TeclaPulsada(SDL_SCANCODE_ESCAPE)) fin = 1;
+
+
+        //Fondo.
+        Pantalla_DibujaImagen(fondoJ,0,0,WPANTALLA,HPANTALLA);
+        Pantalla_DibujaImagen(chicoteB,WPANTALLA/2 + 150,HPANTALLA/2 - 100,300,300);
+
+        //Cuadrado para el texto.
+        Pantalla_ColorTrazo(255,0,0,255);
+        Pantalla_ColorRelleno(135,107,41,255);
+        Pantalla_DibujaRectangulo((WPANTALLA-270)/2 - 245,(HPANTALLA-150)/2 ,270,150);
+
+        //Texto.
+        Pantalla_ColorTrazo(rand()%255,rand()%255,rand()%255,255);
+        Pantalla_DibujaTexto("Hasta pronto.", WPANTALLA/2 - 300   , HPANTALLA/2 - 30);
+        Pantalla_DibujaTexto(puntuacion, WPANTALLA/2 - 300, HPANTALLA/2 - 10);
+        Pantalla_DibujaTexto(textoRecord, WPANTALLA/2 - 300, HPANTALLA/2 + 10);
+        Pantalla_DibujaTexto("Pulsa [ESC] para salir ", WPANTALLA/2 - 350 , HPANTALLA/2 + 50);
+
+        Pantalla_Actualiza();
+
+    };
+
+
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+    //##################################################################################################################################################
+
+
+
+    Pantalla_ImagenLibera(fondoJ);
+    Pantalla_Libera();
+
+
+    return 0;
+
+}

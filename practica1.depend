@@ -1,0 +1,544 @@
+# depslib dependency file v1.0
+1586550469 source:c:\users\f\owncloud\practicastp\practica1\astro.c
+	<stdlib.h>
+	"Astro.h"
+	"Pantalla.h"
+
+1586550679 c:\users\f\owncloud\practicastp\practica1\astro.h
+	"Pantalla.h"
+
+1582334226 c:\users\f\owncloud\practicastp\practica1\pantalla.h
+	"SDL2/SDL.h"
+
+1587666126 source:c:\users\f\owncloud\practicastp\practica1\bala.c
+	<stdlib.h>
+	"Bala.h"
+	"Pantalla.h"
+
+1589641156 c:\users\f\owncloud\practicastp\practica1\bala.h
+	"Pantalla.h"
+
+1586710632 source:c:\users\f\owncloud\practicastp\practica1\colision.c
+	"Pantalla.h"
+	"Enemigo.h"
+	"math.h"
+
+1589641463 c:\users\f\owncloud\practicastp\practica1\enemigo.h
+	"Pantalla.h"
+	"personaje.h"
+
+1589642933 c:\users\f\owncloud\practicastp\practica1\personaje.h
+	"Pantalla.h"
+
+1589644503 source:c:\users\f\owncloud\practicastp\practica1\efectos.c
+	<stdlib.h>
+	"Efectos.h"
+
+1589644503 c:\users\f\owncloud\practicastp\practica1\efectos.h
+	"Explosion.h"
+
+1589644589 c:\users\f\owncloud\practicastp\practica1\explosion.h
+	"Pantalla.h"
+
+1587741897 source:c:\users\f\owncloud\practicastp\practica1\enemigo.c
+	<stdlib.h>
+	"Enemigo.h"
+	"Colision.h"
+	"Pantalla.h"
+	"personaje.h"
+	"Bala.h"
+	<math.h>
+
+1586550810 c:\users\f\owncloud\practicastp\practica1\colision.h
+	"Enemigo.h"
+
+1587511959 source:c:\users\f\owncloud\practicastp\practica1\escudo.c
+	"Escudo.h"
+	"Pantalla.h"
+	<stdlib.h>
+	<stdio.h>
+
+1587511619 c:\users\f\owncloud\practicastp\practica1\escudo.h
+	"Pantalla.h"
+	"personaje.h"
+
+1589644503 source:c:\users\f\owncloud\practicastp\practica1\explosion.c
+	"Pantalla.h"
+	"Explosion.h"
+	<stdlib.h>
+
+1587343197 source:c:\users\f\owncloud\practicastp\practica1\ficheros.c
+
+1587992223 source:c:\users\f\owncloud\practicastp\practica1\flota.c
+	<stdlib.h>
+	<stdio.h>
+	"Flota.h"
+	"Colision.h"
+	"Enemigo.h"
+	"Rafaga.h"
+	"Efectos.h"
+
+1589642018 c:\users\f\owncloud\practicastp\practica1\flota.h
+	"Enemigo.h"
+	"personaje.h"
+	"Efectos.h"
+
+1589642015 c:\users\f\owncloud\practicastp\practica1\rafaga.h
+	"Bala.h"
+	"Flota.h"
+	"Efectos.h"
+
+1586550138 source:c:\users\f\owncloud\practicastp\practica1\galaxia.c
+	<stdlib.h>
+	"Galaxia.h"
+	"Astro.h"
+	"Colision.h"
+
+1586550679 c:\users\f\owncloud\practicastp\practica1\galaxia.h
+	"Astro.h"
+
+1583886326 source:c:\users\f\owncloud\practicastp\practica1\pantalla.c
+	"Pantalla.h"
+	<stdlib.h>
+	<signal.h>
+	<stdio.h>
+	<math.h>
+
+1587841952 source:c:\users\f\owncloud\practicastp\practica1\personaje.c
+	<stdlib.h>
+	"personaje.h"
+
+1587992241 source:c:\users\f\owncloud\practicastp\practica1\rafaga.c
+	<stdlib.h>
+	"Rafaga.h"
+	"personaje.h"
+	"Efectos.h"
+
+1589644503 source:c:\users\f\owncloud\practicastp\practica1\main.c
+	<stdlib.h>
+	<stdio.h>
+	"Pantalla.h"
+	"personaje.h"
+	"Enemigo.h"
+	"Colision.h"
+	"Galaxia.h"
+	"Astro.h"
+	"Flota.h"
+	"Rafaga.h"
+	<time.h>
+	"Explosion.h"
+
+1586550469 source:c:\users\f\desktop\practica1\astro.c
+	<stdlib.h>
+	"Astro.h"
+	"Pantalla.h"
+
+1586550679 c:\users\f\desktop\practica1\astro.h
+	"Pantalla.h"
+
+1582334226 c:\users\f\desktop\practica1\pantalla.h
+	"SDL2/SDL.h"
+
+1587666126 source:c:\users\f\desktop\practica1\bala.c
+	<stdlib.h>
+	"Bala.h"
+	"Pantalla.h"
+
+1587643067 c:\users\f\desktop\practica1\bala.h
+	"Pantalla.h"
+
+1586710632 source:c:\users\f\desktop\practica1\colision.c
+	"Pantalla.h"
+	"Enemigo.h"
+	"math.h"
+
+1587644442 c:\users\f\desktop\practica1\enemigo.h
+	"Pantalla.h"
+	"personaje.h"
+
+1587840517 c:\users\f\desktop\practica1\personaje.h
+	"Pantalla.h"
+
+1587638647 source:c:\users\f\desktop\practica1\efectos.c
+	<stdlib.h>
+	"Efectos.h"
+
+1587638671 c:\users\f\desktop\practica1\efectos.h
+	"Explosion.h"
+
+1587634383 c:\users\f\desktop\practica1\explosion.h
+	"Pantalla.h"
+
+1587741897 source:c:\users\f\desktop\practica1\enemigo.c
+	<stdlib.h>
+	"Enemigo.h"
+	"Colision.h"
+	"Pantalla.h"
+	"personaje.h"
+	"Bala.h"
+	<math.h>
+
+1586550810 c:\users\f\desktop\practica1\colision.h
+	"Enemigo.h"
+
+1587637825 source:c:\users\f\desktop\practica1\explosion.c
+	"Pantalla.h"
+	"Explosion.h"
+	<stdlib.h>
+
+1587992223 source:c:\users\f\desktop\practica1\flota.c
+	<stdlib.h>
+	<stdio.h>
+	"Flota.h"
+	"Colision.h"
+	"Enemigo.h"
+	"Rafaga.h"
+	"Efectos.h"
+
+1587768519 c:\users\f\desktop\practica1\flota.h
+	"Enemigo.h"
+	"personaje.h"
+	"Efectos.h"
+
+1587639850 c:\users\f\desktop\practica1\rafaga.h
+	"Bala.h"
+	"Flota.h"
+	"Efectos.h"
+
+1586550138 source:c:\users\f\desktop\practica1\galaxia.c
+	<stdlib.h>
+	"Galaxia.h"
+	"Astro.h"
+	"Colision.h"
+
+1586550679 c:\users\f\desktop\practica1\galaxia.h
+	"Astro.h"
+
+1587992801 source:c:\users\f\desktop\practica1\main.c
+	<stdlib.h>
+	<stdio.h>
+	"Pantalla.h"
+	"personaje.h"
+	"Enemigo.h"
+	"Colision.h"
+	"Galaxia.h"
+	"Astro.h"
+	"Flota.h"
+	"Rafaga.h"
+	<time.h>
+	"Explosion.h"
+
+1583886326 source:c:\users\f\desktop\practica1\pantalla.c
+	"Pantalla.h"
+	<stdlib.h>
+	<signal.h>
+	<stdio.h>
+	<math.h>
+
+1587841952 source:c:\users\f\desktop\practica1\personaje.c
+	<stdlib.h>
+	"personaje.h"
+
+1587992241 source:c:\users\f\desktop\practica1\rafaga.c
+	<stdlib.h>
+	"Rafaga.h"
+	"personaje.h"
+	"Efectos.h"
+
+1586550469 source:c:\users\f\desktop\practica2\astro.c
+	<stdlib.h>
+	"Astro.h"
+	"Pantalla.h"
+
+1589647242 c:\users\f\desktop\practica2\astro.h
+	"Pantalla.h"
+
+1582334226 c:\users\f\desktop\practica2\pantalla.h
+	"SDL2/SDL.h"
+
+1587666126 source:c:\users\f\desktop\practica2\bala.c
+	<stdlib.h>
+	"Bala.h"
+	"Pantalla.h"
+
+1589641156 c:\users\f\desktop\practica2\bala.h
+	"Pantalla.h"
+
+1589644503 source:c:\users\f\desktop\practica2\efectos.c
+	<stdlib.h>
+	"Efectos.h"
+
+1589645128 c:\users\f\desktop\practica2\efectos.h
+	"Explosion.h"
+
+1589648956 c:\users\f\desktop\practica2\explosion.h
+	"Pantalla.h"
+
+1593701932 source:c:\users\f\desktop\practica2\enemigo.c
+	<stdlib.h>
+	"Enemigo.h"
+	"Colision.h"
+	"Pantalla.h"
+	"personaje.h"
+	"Bala.h"
+	<math.h>
+	<stdio.h>
+
+1593715404 c:\users\f\desktop\practica2\enemigo.h
+	"Pantalla.h"
+	"personaje.h"
+
+1593715404 c:\users\f\desktop\practica2\personaje.h
+	"Pantalla.h"
+
+1589648441 c:\users\f\desktop\practica2\colision.h
+	"Enemigo.h"
+
+1589644503 source:c:\users\f\desktop\practica2\explosion.c
+	"Pantalla.h"
+	"Explosion.h"
+	<stdlib.h>
+
+1593694071 source:c:\users\f\desktop\practica2\flota.c
+	<stdlib.h>
+	<stdio.h>
+	"Flota.h"
+	"Colision.h"
+	"Enemigo.h"
+	"Rafaga.h"
+	"Efectos.h"
+
+1593690796 c:\users\f\desktop\practica2\flota.h
+	"Enemigo.h"
+	"personaje.h"
+
+1590438538 c:\users\f\desktop\practica2\rafaga.h
+	"Bala.h"
+	"Flota.h"
+
+1586550138 source:c:\users\f\desktop\practica2\galaxia.c
+	<stdlib.h>
+	"Galaxia.h"
+	"Astro.h"
+	"Colision.h"
+
+1589647242 c:\users\f\desktop\practica2\galaxia.h
+	"Astro.h"
+
+1583886326 source:c:\users\f\desktop\practica2\pantalla.c
+	"Pantalla.h"
+	<stdlib.h>
+	<signal.h>
+	<stdio.h>
+	<math.h>
+
+1593709994 source:c:\users\f\desktop\practica2\personaje.c
+	<stdlib.h>
+	"personaje.h"
+
+1590438597 source:c:\users\f\desktop\practica2\rafaga.c
+	<stdlib.h>
+	"Rafaga.h"
+	"personaje.h"
+
+1590438773 source:c:\users\f\desktop\practica2\colision.c
+	"Pantalla.h"
+	"Enemigo.h"
+	"math.h"
+
+1593819273 source:c:\users\f\desktop\practica2\main.c
+	<stdlib.h>
+	<stdio.h>
+	"Pantalla.h"
+	"personaje.h"
+	"Enemigo.h"
+	"Colision.h"
+	"Galaxia.h"
+	"Astro.h"
+	"Flota.h"
+	"Rafaga.h"
+	<time.h>
+
+1586550469 source:c:\users\f\desktop\practica2\codigo\astro.c
+	<stdlib.h>
+	"Astro.h"
+	"Pantalla.h"
+
+1589647242 c:\users\f\desktop\practica2\codigo\astro.h
+	"Pantalla.h"
+
+1582334226 c:\users\f\desktop\practica2\codigo\pantalla.h
+	"SDL2/SDL.h"
+
+1587666126 source:c:\users\f\desktop\practica2\codigo\bala.c
+	<stdlib.h>
+	"Bala.h"
+	"Pantalla.h"
+
+1589641156 c:\users\f\desktop\practica2\codigo\bala.h
+	"Pantalla.h"
+
+1590438773 source:c:\users\f\desktop\practica2\codigo\colision.c
+	"Pantalla.h"
+	"Enemigo.h"
+	"math.h"
+
+1593715404 c:\users\f\desktop\practica2\codigo\enemigo.h
+	"Pantalla.h"
+	"personaje.h"
+
+1593715404 c:\users\f\desktop\practica2\codigo\personaje.h
+	"Pantalla.h"
+
+1593701932 source:c:\users\f\desktop\practica2\codigo\enemigo.c
+	<stdlib.h>
+	"Enemigo.h"
+	"Colision.h"
+	"Pantalla.h"
+	"personaje.h"
+	"Bala.h"
+	<math.h>
+	<stdio.h>
+
+1589648441 c:\users\f\desktop\practica2\codigo\colision.h
+	"Enemigo.h"
+
+1593820447 source:c:\users\f\desktop\practica2\codigo\flota.c
+	<stdlib.h>
+	<stdio.h>
+	"Flota.h"
+	"Colision.h"
+	"Enemigo.h"
+	"Rafaga.h"
+
+1593820805 c:\users\f\desktop\practica2\codigo\flota.h
+	"Enemigo.h"
+	"personaje.h"
+
+1590438538 c:\users\f\desktop\practica2\codigo\rafaga.h
+	"Bala.h"
+	"Flota.h"
+
+1586550138 source:c:\users\f\desktop\practica2\codigo\galaxia.c
+	<stdlib.h>
+	"Galaxia.h"
+	"Astro.h"
+	"Colision.h"
+
+1589647242 c:\users\f\desktop\practica2\codigo\galaxia.h
+	"Astro.h"
+
+1593820561 source:c:\users\f\desktop\practica2\codigo\main.c
+	<stdlib.h>
+	<stdio.h>
+	"Pantalla.h"
+	"personaje.h"
+	"Enemigo.h"
+	"Colision.h"
+	"Galaxia.h"
+	"Astro.h"
+	"Flota.h"
+	"Rafaga.h"
+	<time.h>
+
+1583886326 source:c:\users\f\desktop\practica2\codigo\pantalla.c
+	"Pantalla.h"
+	<stdlib.h>
+	<signal.h>
+	<stdio.h>
+	<math.h>
+
+1593709994 source:c:\users\f\desktop\practica2\codigo\personaje.c
+	<stdlib.h>
+	"personaje.h"
+
+1590438597 source:c:\users\f\desktop\practica2\codigo\rafaga.c
+	<stdlib.h>
+	"Rafaga.h"
+	"personaje.h"
+
+1586550469 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\astro.c
+	<stdlib.h>
+	"Astro.h"
+	"Pantalla.h"
+
+1589647242 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\astro.h
+	"Pantalla.h"
+
+1582334226 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\pantalla.h
+	"SDL2/SDL.h"
+
+1587666126 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\bala.c
+	<stdlib.h>
+	"Bala.h"
+	"Pantalla.h"
+
+1589641156 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\bala.h
+	"Pantalla.h"
+
+1590438773 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\colision.c
+	"Pantalla.h"
+	"Enemigo.h"
+	"math.h"
+
+1593715404 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\enemigo.h
+	"Pantalla.h"
+	"personaje.h"
+
+1593715404 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\personaje.h
+	"Pantalla.h"
+
+1593701932 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\enemigo.c
+	<stdlib.h>
+	"Enemigo.h"
+	"Colision.h"
+	"Pantalla.h"
+	"personaje.h"
+	"Bala.h"
+	<math.h>
+	<stdio.h>
+
+1589648441 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\colision.h
+	"Enemigo.h"
+
+1593820447 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\flota.c
+	<stdlib.h>
+	<stdio.h>
+	"Flota.h"
+	"Colision.h"
+	"Enemigo.h"
+	"Rafaga.h"
+
+1593820805 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\flota.h
+	"Enemigo.h"
+	"personaje.h"
+
+1590438538 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\rafaga.h
+	"Bala.h"
+	"Flota.h"
+
+1586550138 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\galaxia.c
+	<stdlib.h>
+	"Galaxia.h"
+	"Astro.h"
+	"Colision.h"
+
+1589647242 c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\galaxia.h
+	"Astro.h"
+
+1583886326 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\pantalla.c
+	"Pantalla.h"
+	<stdlib.h>
+	<signal.h>
+	<stdio.h>
+	<math.h>
+
+1593709994 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\personaje.c
+	<stdlib.h>
+	"personaje.h"
+
+1590438597 source:c:\users\f\desktop\proyecto tp - felipe sanchez gonzalez\codigo\rafaga.c
+	<stdlib.h>
+	"Rafaga.h"
+	"personaje.h"
+
